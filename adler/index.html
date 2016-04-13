@@ -1,11 +1,51 @@
 <!DOCTYPE html>
 <html>
   <head>
-    <title>Homepage</title>
+	<meta charset="utf-8">
+    <title>Adlerweg</title>
+	<link rel="stylesheet" href="http://cdn.leafletjs.com/leaflet/v0.7.7/leaflet.css" />
+		<link rel="stylesheet" href="styles.css" />
+		<script src= "adlerweg01.js"> </script>
+		<script src="http://cdn.leafletjs.com/leaflet/v0.7.7/leaflet.js"></script>
   </head>
   <body>
-    <h1>Adlerweg Open Data</h1>
-	blaaa
-	blaaa
+    <h1>Adlerweg aus Open Data</h1>
+	<div id="adlerwegkarte" style= "width:900px;height:600px"></div>
+	<script>
+				
+				var adlerkarte = L.map('adlerwegkarte');
+				
+
+				var osmLayer = L.tileLayer('http://{s}.tile.osm.org/{z}/{x}/{y}.png', {
+					attribution: '&copy; <a href="http://osm.org/copyright">OpenStreetMap contributors</a>'
+				}).addTo(adlerkarte);
+				
+				adlerkarte.setView([47, 11], 10);
+				var etappe01 = L.geoJson(adlerweg01json, {style:
+				{
+				color:"blue",
+				weight:10
+				}
+				});
+				adlerkarte.addLayer(etappe01);
+				
+				adlerkarte.fitBounds(etappe01)
+				
+				
+				
+				
+				// create a red polyline from an array of LatLng points
+				//var line_adler = L.polyline([
+				
+				//], {color: 'red', weight:'4px'}).addTo(adlerkarte);
+
+				// zoom the map to the polyline
+				//adlerkarte.fitBounds(line.getBounds().pad(0.5));
+				
+				//L.control.scale({
+				//'imperial' : false
+				//}).addTo(adlerkarte);
+			
+			</script>
   </body>
 </html>

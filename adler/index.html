@@ -31,6 +31,7 @@
 				}
 				});
 				adlerkarte.addLayer(etappe01);
+				etappe01.bindPopup("Adlerweg - Etappe 1.");
 				
 				var etappe03 = L.geoJson(adlerweg03json, {style:
 				{
@@ -39,6 +40,7 @@
 				}
 				});
 				adlerkarte.addLayer(etappe03);
+				etappe03.bindPopup("Adlerweg - Etappe 3.");
 	
 				
 				var etappe05 = L.geoJson(adlerweg05json, {style:
@@ -48,6 +50,7 @@
 				}
 				});
 				adlerkarte.addLayer(etappe05);
+				etappe05.bindPopup("Adlerweg - Etappe 5.");
 				
 				//var geoBounds = getLatLngs([etappe05],[etappe01],[etappe03]);
 				//adlerkarte.fitBounds(geoBounds)

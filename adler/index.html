@@ -15,7 +15,6 @@
 	<div id="adlerwegkarte" style= "width:900px;height:600px"></div>
 	<script>
 				
-				
 			var layers = {
 			
 			osmlayer : L.tileLayer('http://{s}.tile.osm.org/{z}/{x}/{y}.png', {
@@ -53,18 +52,7 @@
             layers : [layers.osmlayer],
         });
 
-        L.control.layers({
-			"Open Street Map" : layers.osmlayer,
-            "Geoland Basemap" : layers.geolandbasemap,
-            "Geoland Basemap Overlay" : layers.bmapoverlay,
-            "Geoland Basemap Grau": layers.bmapgrau,
-            "Geoland Basemap High DPI" : layers.bmaphidpi,
-            "Geoland Basemap Orthofoto" : layers.bmaporthofoto30cm
-        }).addTo(adlerkarte)
-
-        L.control.scale({
-            'imperial' : false
-        }).addTo(adlerkarte);
+        
 		
 				var etappe01 = L.geoJson(adlerweg01json, {style:
 				{
@@ -94,20 +82,68 @@
 				adlerkarte.addLayer(etappe05);
 				etappe05.bindPopup("Adlerweg - Etappe 5");
 				
+				var etappenGruppe=L.featureGroup([etappe01, etappe03, etappe05]);
+				adlerkarte.addLayer(etappenGruppe);
+				adlerkarte.fitBounds(etappenGruppe.getBounds());
 				
-		// var popupwhere = L.popup();
+				var bounds = etappenGruppe.getBounds();
+				
+				var url = 'http://www.panoramio.com/map/get_panoramas.php?set=public&from=0&to=20'
+					+'&minx='+bounds.getWest()
+					+'&miny='+bounds.getSouth()
+					+'&maxx='+bounds.getEast()
+					+'&maxy='+bounds.getNorth()
+					+'&size=mini_square&mapfilter=true&callback=zeigBilder';
+					//alert(url);
+					
+				var script = document.createElement("script");
+					script.src = url;
+					document.getElementsByTagName('head')[0].appendChild(script);
+					window.zeigBilder=function(data){
+				//function zeigBilder(){
+					for (var i=0; i<data.photos.length; i++) {
+						console.log("Photo titel: ", i, data.photos[i].photo_title);
+						L.marker(
+							[data.photos[i].latitude, data.photos[i].longitude],
+							{
+								icon: L.icon({ 
+									iconUrl: data.photos[i].photo_file_url
+								})
+							}).bindPopup("<h2>"+data.photos[i].photo_title+"</h2>"
+								+ "<a href='"+data.photos[i].photo_url+"'>Link zum Bild</a>")
+							.addTo(adlerkarte);
+					}
+				}
+				
+		var basislayer = {
+			"Open Street Map" : layers.osmlayer,
+            "Geoland Basemap" : layers.geolandbasemap,
+            "Geoland Basemap Overlay" : layers.bmapoverlay,
+            "Geoland Basemap Grau": layers.bmapgrau,
+            "Geoland Basemap High DPI" : layers.bmaphidpi,
+            "Geoland Basemap Orthofoto" : layers.bmaporthofoto30cm};
+			
+		var alltracks = { "Tracks" : etappenGruppe};
+			
+		L.control.layers(basislayer, alltracks).addTo(adlerkarte);
 
-				//function onMapClick(e) {popupwhere
-				//.setLatLng(e.latlng)
-				//.setContent("You clicked the map at " + e.latlng.toString())
-				//.openOn(adlerkarte);-->
-				//}
+        L.control.scale({
+            'imperial' : false
+        }).addTo(adlerkarte);
+				
+		/* var popupwhere = L.popup();
 
-				//adlerkarte.on('click', onMapClick); -->
+				function onMapClick(e) {popupwhere
+				.setLatLng(e.latlng)
+				.setContent("You clicked the map at " + e.latlng.toString())
+				.openOn(adlerkarte);
+				}
+
+				adlerkarte.on('click', onMapClick);
 				
 
-				// zoom the map to the polyline
-				adlerkarte.fitBounds(etappe05.getBounds().pad(3));
+				zoom the map to the polyline
+				adlerkarte.fitBounds(etappe05.getBounds().pad(3)); */
 			
 			</script>
   </body>

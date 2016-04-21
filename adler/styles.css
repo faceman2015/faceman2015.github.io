@@ -14,43 +14,6 @@ h1{color:blue;
 h2{color:#FFA500;
 }
 
-caption{color:blue;
-		text-align:left;
-		text-align:bottom;
-}
 
-figcaption{color:blue;
-		text-align:left;
-}
 
-.box {
-    background-color: #cce0ff;
-    width: 700px;
-    padding: 10px;
-    margin: 25px;
-	border-radius: 20px;
-}
-
-table{
-	box-shadow: 7px 7px 5px 0px rgba(50, 50, 50, 0.75);
-}
-
-figure img {width:700px;
-	border-radius: 20px;
-	box-shadow: 7px 7px 5px 0px rgba(50, 50, 50, 0.75);
 	
-}
-.docs tr {
-    vertical-align: middle;
-	text-align: left;
-}
-.docs td {
-    border: 2px solid #aaa;
-    padding: 5px;
-	text-align: left;
-}
-
-.fett {font-weight:bold;
-
-
-}

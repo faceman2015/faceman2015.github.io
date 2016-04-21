@@ -115,6 +115,39 @@
 					}
 				}
 				
+				
+				var url2 = 'http://api.geonames.org/wikipediaBoundingBoxJSON?'
+					+'username=oeggl'
+					+'&west='+bounds.getWest()
+					+'&south='+bounds.getSouth()
+					+'&east='+bounds.getEast()
+					+'&north='+bounds.getNorth()
+					+'&callback=wikiArtikel';
+				alert(url2);
+					
+				var script2 = document.createElement("script2");
+					script2.src = url2;
+					document.getElementsByTagName('head')[0].appendChild(script2);
+				
+				function wikiArtikel(data2){
+					for (var i=0; i<data2.geonames.length; i++) {
+						var p = data2.geonames[i];
+						
+						console.log("Wiki Artikel titel: ", i, p.title);
+						
+						L.marker([p.lat, p.lng],
+							{icon: L.icon({ 
+									iconUrl: "wikipedia.jpg"
+								})
+								
+							}
+							)
+							.bindPopup("<h2>"+p.title+"</h2>"
+								+ "<a href='http://"+p.wikipediaUrl+"'>Link zum Bild</a>")
+							.addTo(adlerkarte);
+					}
+				}
+				
 		var basislayer = {
 			"Open Street Map" : layers.osmlayer,
             "Geoland Basemap" : layers.geolandbasemap,

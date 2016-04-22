@@ -7,6 +7,7 @@ adlerweg05json={
                 "name": "Adlerweg Etappe 05 on GPSies.com",
                 "link": "\n      ",
                 "time": "2010-01-01T00:00:00Z"
+			
             },
             "geometry": {
                 "type": "LineString",

@@ -123,7 +123,7 @@
 					+'&east='+bounds.getEast()
 					+'&north='+bounds.getNorth()
 					+'&callback=wikiArtikel';
-				alert(url2);
+				//alert(url2);
 					
 				var script2 = document.createElement("script");
 					script2.src = url2;
@@ -137,7 +137,8 @@
 						
 						L.marker([p.lat, p.lng],
 							{icon: L.icon({ 
-									iconUrl: "wikipedia.jpg"
+									iconUrl: "wikipedia.jpg",
+									iconSize: [30, 30],
 								})
 								
 							}

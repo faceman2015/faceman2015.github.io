@@ -4,7 +4,7 @@
 * Fotos von Panoramio und Artikeln von Wikipedia
 * Hintergrundkarten: Open Street Map und basemap.at
 ***/
-
+	
 window.onload = function() {
     
 	var layers = {
@@ -95,6 +95,7 @@ window.onload = function() {
     window.zeigBilder = function(data) {
         //function zeigBilder(){
         for (var i = 0; i < data.photos.length; i++) {
+			//i++: i=i+1
             console.log("Photo titel: ", i, data.photos[i].photo_title);
             L.marker(
                     [data.photos[i].latitude, data.photos[i].longitude], {

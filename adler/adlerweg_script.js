@@ -44,13 +44,20 @@ window.onload = function() {
         layers: [layers.osmlayer],
     });
 
-
+	var hash = new L.Hash(adlerkarte);
+	
+	var el = L.control.elevation({
+		collapsed: true
+		})
+	.addTo(adlerkarte);
+	
 
     var etappe01 = L.geoJson(adlerweg01json, {
         style: {
             color: "blue",
             weight: 10
-        }
+        }, 
+		onEachFeature: el.addData.bind(el)
     });
     adlerkarte.addLayer(etappe01);
     etappe01.bindPopup("Adlerweg - Etappe 1");
@@ -59,7 +66,8 @@ window.onload = function() {
         style: {
             color: "red",
             weight: 10
-        }
+        }, 
+		onEachFeature: el.addData.bind(el)
     });
     adlerkarte.addLayer(etappe03);
     etappe03.bindPopup("Adlerweg - Etappe 3");
@@ -69,7 +77,8 @@ window.onload = function() {
         style: {
             color: "black",
             weight: 10
-        }
+        }, 
+		onEachFeature: el.addData.bind(el)
     });
     adlerkarte.addLayer(etappe05);
     etappe05.bindPopup("Adlerweg - Etappe 5");
@@ -96,7 +105,7 @@ window.onload = function() {
         //function zeigBilder(){
         for (var i = 0; i < data.photos.length; i++) {
 			//i++: i=i+1
-            console.log("Photo titel: ", i, data.photos[i].photo_title);
+            //console.log("Photo titel: ", i, data.photos[i].photo_title);
             L.marker(
                     [data.photos[i].latitude, data.photos[i].longitude], {
                         icon: L.icon({
@@ -126,7 +135,7 @@ window.onload = function() {
         for (var i = 0; i < data2.geonames.length; i++) {
             var p = data2.geonames[i];
 
-            console.log("Wiki Artikel titel: ", i, p.title);
+            //console.log("Wiki Artikel titel: ", i, p.title);
 
             L.marker([p.lat, p.lng], {
                     icon: L.icon({

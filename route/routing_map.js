@@ -24,10 +24,12 @@ function createButton(label, container) {
     return btn;
 }
 
+// Klicks auf Karte verarbeiten
 map.on('click', function(e) {
     var container = L.DomUtil.create('div'),
 		startBtn = createButton('Startpunkt', container),
 		destBtn = createButton('Endpunkt', container);
+		console.log(e);
 
     L.popup()
         .setContent(container)

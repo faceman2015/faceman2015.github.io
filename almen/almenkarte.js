@@ -31,7 +31,7 @@ window.onload = function() {
     var map = L.map('almen', {
         layers: [layers.osmlayer],
         center: [47.00, 11.07],
-        zoom: 9
+        zoom: 12
     });
 
 	// Menü mit Basislayern hinzufügen
@@ -50,7 +50,16 @@ window.onload = function() {
         'imperial': false
     }).addTo(map);
 	
+	// Koordinaten von Punkten über Variable in js File hinzufügen
 	L.geoJson(almenzentren_json).addTo(map);
+	
+	// Marker clustern
+	var markers = L.markerClusterGroup(
+	//{disableClusteringATZoom : 14
+	//}
+	);
+	makers.addLayer(marker);
+	map.addLayer(markers);
 	
     // Window.onload beenden:
 }

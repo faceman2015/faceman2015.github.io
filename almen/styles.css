@@ -1,0 +1,20 @@
+/*****
+ *
+ * common stylesheet for docs
+ *
+ *****/
+/* 
+http://www.w3schools.com/colors/colors_picker.asp
+*/
+h1 {
+    color: blue;
+}
+
+h2 {
+    color: #FFA500;
+}
+	
+#almen {
+	width:800px; 
+	height:500px
+}

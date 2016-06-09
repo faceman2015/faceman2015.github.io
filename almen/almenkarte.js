@@ -34,5 +34,17 @@ window.onload = function() {
         zoom: 9
     });
 
+	// Menü mit Basislayern hinzufügen
+    var layerControl = L.control.layers(
+        {
+            "Open Street Map": layers.osmlayer,
+            "Geoland Basemap": layers.geolandbasemap,
+            "Geoland Basemap Overlay": layers.bmapoverlay,
+            "Geoland Basemap Grau": layers.bmapgrau,
+            "Geoland Basemap High DPI": layers.bmaphidpi,
+            "Geoland Basemap Orthofoto": layers.bmaporthofoto30cm
+        }).addTo(map);
+	
+	
     // Window.onload beenden:
 }

@@ -44,6 +44,11 @@ window.onload = function() {
             "Geoland Basemap High DPI": layers.bmaphidpi,
             "Geoland Basemap Orthofoto": layers.bmaporthofoto30cm
         }).addTo(map);
+		
+	// Maßstabsleiste hinzufügen
+    L.control.scale({
+        'imperial': false
+    }).addTo(map);
 	
 	
     // Window.onload beenden:

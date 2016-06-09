@@ -50,6 +50,7 @@ window.onload = function() {
         'imperial': false
     }).addTo(map);
 	
+	L.geoJson(almenzentren_json).addTo(map);
 	
     // Window.onload beenden:
 }

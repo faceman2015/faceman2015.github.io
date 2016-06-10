@@ -49,6 +49,16 @@ window.onload = function() {
     L.control.scale({
         'imperial': false
     }).addTo(map);
+	
+	        // Legendenobjekt mit Bezeichnungen nach Typnummern
+        var legendLabels = {
+            1 : 'Kein Leger/nur Almzentrum',
+            2 : 'Niederleger',
+            3 : 'Mittelleger',
+            4 : 'Hochleger',
+            5 : 'Galtviehleger',
+            6 : 'Schafleger',   
+        };
 
     // Marker clustern
     var mc = new L.markerClusterGroup({
@@ -62,10 +72,39 @@ window.onload = function() {
             var description = feature.properties.NAME;
             layer.bindPopup(description);
         },
-    }).addTo(mc);
+    
 
+	            pointToLayer: function(feature, latlng) {
+                 return L.marker(latlng, {
+                     icon : L.icon({
+                         iconSize : [36,36],
+                         iconAnchor: [18,18],
+                         iconUrl: 'icons/alm_' + feature.properties.OBJEKT + '.png'
+                     })
+                 });
+             }
+			 }).addTo(mc)
+			 
     // Marker Cluster Gruppe zur Karte hinzufügen
     mc.addTo(map);
+	
+	        // Legenden DIV finden und mit Icons samt Beschriftung befüllen
+         legend_div = document.getElementById("legende");
+        
+             legend_div.innerHTML += '<img src="icons/alm_EL.png" style="vertical-align:middle;padding-bottom:3px;" /> ';
+			 legend_div.innerHTML += legendLabels[1]+  '<br/>';
+			 legend_div.innerHTML += '<img src="icons/alm_NL.png" style="vertical-align:middle;padding-bottom:3px;" /> ';
+			 legend_div.innerHTML += legendLabels[2]+  '<br/>';
+			 legend_div.innerHTML += '<img src="icons/alm_ML.png" style="vertical-align:middle;padding-bottom:3px;" /> ';
+			 legend_div.innerHTML += legendLabels[3]+  '<br/>';
+			 legend_div.innerHTML += '<img src="icons/alm_HL.png" style="vertical-align:middle;padding-bottom:3px;" /> ';
+			 legend_div.innerHTML += legendLabels[4]+  '<br/>';
+			 legend_div.innerHTML += '<img src="icons/alm_GAL.png" style="vertical-align:middle;padding-bottom:3px;" /> ';
+			 legend_div.innerHTML += legendLabels[5]+  '<br/>';
+			 legend_div.innerHTML += '<img src="icons/alm_SCHL.png" style="vertical-align:middle;padding-bottom:3px;" /> ';
+			 legend_div.innerHTML += legendLabels[6]+  '<br/>';
+			 //
+         
 
     // Ausschnitt setzen
     map.fitBounds(alm.getBounds());

@@ -1,6 +1,6 @@
 window.onload = function() {
 
-    // Basis layer
+    // Basis layer hinzufügen
     var layers = {
         osmlayer: L.tileLayer('http://{s}.tile.osm.org/{z}/{x}/{y}.png', {
             attribution: '&copy; <a href="http://osm.org/copyright">OpenStreetMap contributors</a>'
@@ -30,36 +30,45 @@ window.onload = function() {
     // Karte erstellen
     var map = L.map('almen', {
         layers: [layers.osmlayer],
-        center: [47.00, 11.07],
-        zoom: 12
     });
 
-	// Menü mit Basislayern hinzufügen
-    var layerControl = L.control.layers(
-        {
-            "Open Street Map": layers.osmlayer,
-            "Geoland Basemap": layers.geolandbasemap,
-            "Geoland Basemap Overlay": layers.bmapoverlay,
-            "Geoland Basemap Grau": layers.bmapgrau,
-            "Geoland Basemap High DPI": layers.bmaphidpi,
-            "Geoland Basemap Orthofoto": layers.bmaporthofoto30cm
-        }).addTo(map);
-		
-	// Maßstabsleiste hinzufügen
+    //Koordinaten Lienz
+    //map.setView([46.829722, 12.769722], 11);
+
+    // Menü mit Basislayern hinzufügen
+    var layerControl = L.control.layers({
+        "Open Street Map": layers.osmlayer,
+        "Geoland Basemap": layers.geolandbasemap,
+        "Geoland Basemap Overlay": layers.bmapoverlay,
+        "Geoland Basemap Grau": layers.bmapgrau,
+        "Geoland Basemap High DPI": layers.bmaphidpi,
+        "Geoland Basemap Orthofoto": layers.bmaporthofoto30cm
+    }).addTo(map);
+
+    // Maßstabsleiste hinzufügen
     L.control.scale({
         'imperial': false
     }).addTo(map);
-	
-	// Koordinaten von Punkten über Variable in js File hinzufügen
-	L.geoJson(almenzentren_json).addTo(map);
-	
-	// Marker clustern
-	var markers = L.markerClusterGroup(
-	//{disableClusteringATZoom : 14
-	//}
-	);
-	makers.addLayer(marker);
-	map.addLayer(markers);
-	
+
+    // Marker clustern
+    var mc = new L.markerClusterGroup({
+        disableClusteringATZoom: 10
+    });
+
+    // Marker mit Pop ups über GeoJSON zur Marker Cluster Gruppe hinzufügen
+    var alm = L.geoJson(window.almen_osttirol_json, {
+        onEachFeature: function(feature, layer) {
+            var icon = L.icon();
+            var description = feature.properties.NAME;
+            layer.bindPopup(description);
+        },
+    }).addTo(mc);
+
+    // Marker Cluster Gruppe zur Karte hinzufügen
+    mc.addTo(map);
+
+    // Ausschnitt setzen
+    map.fitBounds(alm.getBounds());
+
     // Window.onload beenden:
 }

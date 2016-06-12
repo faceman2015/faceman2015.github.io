@@ -49,16 +49,27 @@ window.onload = function() {
     L.control.scale({
         'imperial': false
     }).addTo(map);
-	
-	        // Legendenobjekt mit Bezeichnungen nach Typnummern
-        var legendLabels = {
-            1 : 'Kein Leger/nur Almzentrum',
-            2 : 'Niederleger',
-            3 : 'Mittelleger',
-            4 : 'Hochleger',
-            5 : 'Galtviehleger',
-            6 : 'Schafleger',   
-        };
+
+    // GeoJSON Daten nach Attribut NAME sortieren
+    window.almen_osttirol_json.features.sort(function(a, b) {
+        if (a.properties.NAME < b.properties.NAME) {
+            return -1;
+        } else if (a.properties.NAME > b.properties.NAME) {
+            return 1;
+        } else {
+            return 0;
+        }
+    });
+
+    // Legendenobjekt mit Bezeichnungen nach Typnummern
+    var legendLabels = {
+        1: 'Kein Leger/nur Almzentrum',
+        2: 'Niederleger',
+        3: 'Mittelleger',
+        4: 'Hochleger',
+        5: 'Galtviehleger',
+        6: 'Schafleger',
+    };
 
     // Marker clustern
     var mc = new L.markerClusterGroup({
@@ -72,39 +83,66 @@ window.onload = function() {
             var description = feature.properties.NAME;
             layer.bindPopup(description);
         },
-    
 
-	            pointToLayer: function(feature, latlng) {
-                 return L.marker(latlng, {
-                     icon : L.icon({
-                         iconSize : [36,36],
-                         iconAnchor: [18,18],
-                         iconUrl: 'icons/alm_' + feature.properties.OBJEKT + '.png'
-                     })
-                 });
-             }
-			 }).addTo(mc)
-			 
+
+        pointToLayer: function(feature, latlng) {
+            return L.marker(latlng, {
+                icon: L.icon({
+                    iconSize: [36, 36],
+                    iconAnchor: [18, 18],
+                    iconUrl: 'icons/alm_' + feature.properties.OBJEKT + '.png'
+                })
+            });
+        }
+    }).addTo(mc)
+
     // Marker Cluster Gruppe zur Karte hinzufügen
     mc.addTo(map);
-	
-	        // Legenden DIV finden und mit Icons samt Beschriftung befüllen
-         legend_div = document.getElementById("legende");
-        
-             legend_div.innerHTML += '<img src="icons/alm_EL.png" style="vertical-align:middle;padding-bottom:3px;" /> ';
-			 legend_div.innerHTML += legendLabels[1]+  '<br/>';
-			 legend_div.innerHTML += '<img src="icons/alm_NL.png" style="vertical-align:middle;padding-bottom:3px;" /> ';
-			 legend_div.innerHTML += legendLabels[2]+  '<br/>';
-			 legend_div.innerHTML += '<img src="icons/alm_ML.png" style="vertical-align:middle;padding-bottom:3px;" /> ';
-			 legend_div.innerHTML += legendLabels[3]+  '<br/>';
-			 legend_div.innerHTML += '<img src="icons/alm_HL.png" style="vertical-align:middle;padding-bottom:3px;" /> ';
-			 legend_div.innerHTML += legendLabels[4]+  '<br/>';
-			 legend_div.innerHTML += '<img src="icons/alm_GAL.png" style="vertical-align:middle;padding-bottom:3px;" /> ';
-			 legend_div.innerHTML += legendLabels[5]+  '<br/>';
-			 legend_div.innerHTML += '<img src="icons/alm_SCHL.png" style="vertical-align:middle;padding-bottom:3px;" /> ';
-			 legend_div.innerHTML += legendLabels[6]+  '<br/>';
-			 //
-         
+
+    // Legenden DIV finden und mit Icons samt Beschriftung befüllen
+    legend_div = document.getElementById("legende");
+
+    legend_div.innerHTML += '<img src="icons/alm_EL.png" style="vertical-align:middle;padding-bottom:3px;" /> ';
+    legend_div.innerHTML += legendLabels[1] + '<br/>';
+    legend_div.innerHTML += '<img src="icons/alm_NL.png" style="vertical-align:middle;padding-bottom:3px;" /> ';
+    legend_div.innerHTML += legendLabels[2] + '<br/>';
+    legend_div.innerHTML += '<img src="icons/alm_ML.png" style="vertical-align:middle;padding-bottom:3px;" /> ';
+    legend_div.innerHTML += legendLabels[3] + '<br/>';
+    legend_div.innerHTML += '<img src="icons/alm_HL.png" style="vertical-align:middle;padding-bottom:3px;" /> ';
+    legend_div.innerHTML += legendLabels[4] + '<br/>';
+    legend_div.innerHTML += '<img src="icons/alm_GAL.png" style="vertical-align:middle;padding-bottom:3px;" /> ';
+    legend_div.innerHTML += legendLabels[5] + '<br/>';
+    legend_div.innerHTML += '<img src="icons/alm_SCHL.png" style="vertical-align:middle;padding-bottom:3px;" /> ';
+    legend_div.innerHTML += legendLabels[6] + '<br/>';
+    //
+
+    //Marker nach NAMEN sortieren
+    var markers = alm.getLayers();
+    markers.sort(function(a, b) {
+        if (a.feature.properties.NAME > b.feature.properties.NAME) {
+            return 1;
+        } else {
+            return -1;
+        }
+    });
+
+    // Pulldown Menü DIV finden und Auswahleinträge für die Icons hinzufügen
+    var pulldownMenu = document.getElementById("pulldown");
+    var markers = alm.getLayers();
+    for (var i = 0; i < markers.length; i += 1) {
+        option = document.createElement("option");
+        option.value = i;
+        option.text = markers[i]._popup.getContent();
+        pulldownMenu.appendChild(option);
+    }
+
+    // auf Änderungen im Pulldown Menü reagieren
+    pulldownMenu.onchange = function(event) {
+        var i = pulldownMenu.options[pulldownMenu.options.selectedIndex].value;
+        var icon = alm.getLayers()[i];
+        map.setView(icon.getLatLng(), 14);
+        icon.openPopup();
+    };
 
     // Ausschnitt setzen
     map.fitBounds(alm.getBounds());

@@ -4,44 +4,49 @@
 <head>
     <meta charset="utf-8">
     <title> Almen in Osttirol </title>
-	
-	<!-- Stylesheet und Javascript für Leaflet -->
+
+    <!-- Stylesheet und Javascript für Leaflet -->
     <link rel="stylesheet" href="http://cdn.leafletjs.com/leaflet/v0.7.7/leaflet.css" />
-	<script src="http://cdn.leafletjs.com/leaflet/v0.7.7/leaflet.js"></script>
+    <script src="http://cdn.leafletjs.com/leaflet/v0.7.7/leaflet.js"></script>
 
-	<!-- Eigenes Stylesheet-->
-	<link rel="stylesheet" href="styles.css" />
-	
-	<!-- Leaflet Markercluster Stylesheet und Javascript einbinden-->
-	<link rel="stylesheet" href="dist/MarkerCluster.css" />
-	<link rel="stylesheet" href="dist/MarkerCluster.Default.css" />
-	<script src="dist/leaflet.markercluster.js">
-	</script>
-	
-	<!-- eigenes Skript zur Visualisierung -->
-	<script src="almenkarte.js">
-    </script>
-	
-	<!-- Punkte mit den Almenzentren laden -->
-	<script src="almen_osttirol.js">
-    </script>
-	
-	
+    <!-- Eigenes Stylesheet-->
+    <link rel="stylesheet" href="styles.css" />
 
-	</head>
+    <!-- Leaflet Markercluster Stylesheet und Javascript einbinden-->
+    <link rel="stylesheet" href="dist/MarkerCluster.css" />
+    <link rel="stylesheet" href="dist/MarkerCluster.Default.css" />
+    <script src="dist/leaflet.markercluster.js">
+    </script>
+
+    <!-- eigenes Skript zur Visualisierung -->
+    <script src="almenkarte.js">
+    </script>
+
+    <!-- Punkte mit den Almenzentren laden -->
+    <script src="almen_osttirol.js">
+    </script>
+
+
+
+</head>
 
 <body>
-	<!-- Überschrift über der Karte -->
+    <!-- Überschrift über der Karte -->
     <h1> Almzentren in Osttirol </h1>
-    
-	<!-- Container für die Legende erstellen -->
-	<div id="legende" style="float:right;"></div>
-	
-	<!-- Container für die Karte erstellen, Style in css File -->
-	<div id='almen'> </div>
 
-    
-<!-- -->
+    <!-- Pulldown Menü einfügen -->
+    <select name="poi" id="pulldown" style="margin-top:10px;">
+        <option value="" selected>--- Alzentrum auswählen --</option>
+	</select>
+
+    <!-- Container für die Legende erstellen -->
+    <div id="legende" style="float:right;"></div>
+
+    <!-- Container für die Karte erstellen, Style in css File -->
+    <div id='almen'> </div>
+
+
+    <!-- -->
 </body>
 
 </html>

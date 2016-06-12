@@ -18,3 +18,11 @@ h2 {
 	width:800px; 
 	height:500px
 }
+
+#pulldown {
+ margin-top:10px
+ }
+ 
+#legende {
+	float:right
+}

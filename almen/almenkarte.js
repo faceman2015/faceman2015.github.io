@@ -73,7 +73,7 @@ window.onload = function() {
 
     // Marker clustern
     var mc = new L.markerClusterGroup({
-        disableClusteringATZoom: 10
+        disableClusteringATZoom: 8
     });
 
     // Marker mit Pop ups über GeoJSON zur Marker Cluster Gruppe hinzufügen
@@ -140,7 +140,7 @@ window.onload = function() {
     pulldownMenu.onchange = function(event) {
         var i = pulldownMenu.options[pulldownMenu.options.selectedIndex].value;
         var icon = alm.getLayers()[i];
-        map.setView(icon.getLatLng(), 14);
+        map.setView(icon.getLatLng(), 15);
         icon.openPopup();
     };
 

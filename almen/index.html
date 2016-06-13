@@ -2,9 +2,8 @@
 <html>
 
 <head>
-    <meta charset="utf-8">
+    <meta charset="utf-8" name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" >
     <title> Almen in Osttirol </title>
-
     <!-- Stylesheet und Javascript für Leaflet -->
     <link rel="stylesheet" href="http://cdn.leafletjs.com/leaflet/v0.7.7/leaflet.css" />
     <script src="http://cdn.leafletjs.com/leaflet/v0.7.7/leaflet.js"></script>
@@ -31,12 +30,38 @@
 </head>
 
 <body>
-    <!-- Überschrift über der Karte -->
+    <!-- Überschrift der Seite-->
     <h1> Almzentren in Osttirol </h1>
-
-    <!-- Pulldown Menü einfügen -->
+	
+	<div id='beschreibung'> 
+	Im Bundesland Tirol liegen rund 2.600 Almen, die mit einer Gesamtfläche 
+	von etwa 6.000 km² über 47 % der Landesfläche Tirols einnehmen.
+	<p>Es gibt eine Vielfalt von Möglichkeiten wie Almen intern strukturiert sein können: 
+	<p> Eine Alm kann nur ein Zentrum und keine Leger aufweisen, sie kann aus mehreren Legern bestehen, 
+	kann zum Beispiel zwei Niederleger und zwei Hochleger haben und ein Leger kann 
+	unter Umständen auch eine „Hauptbetriebsnummer“ inne haben. 
+	<p>Als Leger- bzw. Almtypen oder Almfunktionalitäten wurden unterschieden: 
+	
+	<li>Keine Leger: 
+	Darunter sind Almen zu verstehen, die nur ein Almzentrum aufweisen und 
+	keine Leger besitzen. 
+	<li>Niederleger (NL)</li>
+	<li>Mittelleger (ML)</li>
+	<li>Hochleger (HL)</li>
+	<li>Galtviehleger (GAL)</li>
+	<li>Schafleger (SCHL)</li>
+	
+	<p> Bei der Verortung wurde das Almgebäude, die Almsiedlung bzw. das Almdorf, das als 
+	Almzentrum aufgefasst wird, mittels einer Punktverortung erfasst. 
+	Sind kein Almgebäude vorhanden, so wurde das Zentrum des Hauptweidegebietes verortet.
+	</div>
+	
+	<!-- Überschrift über der Karte -->
+    <h2> Karte von Osttirol mit allen Almzentren </h2>
+    
+	<!-- Pulldown Menü einfügen -->
     <select name='poi' id='pulldown'>
-        <option value="" selected>--- Alzentrum auswählen --</option>
+        <option value="" selected>--- Bitte gewünschtes Almzentrum auswählen ---</option>
 	</select>
 
     <!-- Container für die Legende erstellen -->

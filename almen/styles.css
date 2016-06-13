@@ -6,23 +6,58 @@
 /* 
 http://www.w3schools.com/colors/colors_picker.asp
 */
+
+body {
+font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;       
+background-color: rgba(221, 221, 221, 0.75);
+padding: 0;
+margin: 0;
+}
+
+html, body, #almen {
+    height: 100%;
+}
+
 h1 {
-    color: blue;
+    color: #000099;
+	margin: 10px 20px;
 }
 
 h2 {
-    color: #FFA500;
+	color: #000099;
+	margin: 10px 20px;
 }
-	
+
+#beschreibung {
+	margin: 10px 20px;
+	width:800px; 
+	border: 1px black solid;
+	padding: 10px 10px;
+} 
+
+li {
+	margin: 10px 20px;
+}
+
 #almen {
 	width:800px; 
-	height:500px
+	height:500px;
+	border: 1px black solid;
+	margin: 10px 20px;
+	padding: 10px 10px;
 }
 
 #pulldown {
- margin-top:10px
+ margin-top:20px;
+ padding: 10px 10px;
  }
  
 #legende {
-	float:right
+	float:right;
+	border: 1px black solid;
+	padding: 10px 10px;
+}
+
+html, body, #almen {
+    height: 100%;
 }

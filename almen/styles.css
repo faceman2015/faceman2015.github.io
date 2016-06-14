@@ -7,16 +7,8 @@
 http://www.w3schools.com/colors/colors_picker.asp
 */
 
-body {
-font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;       
-background-color: rgba(221, 221, 221, 0.75);
-padding: 0;
-margin: 0;
-}
 
-html, body, #almen {
-    height: 100%;
-}
+
 
 h1 {
     color: #000099;
@@ -34,6 +26,7 @@ h3 {
 	margin: 0;
 }		
 
+
 #beschreibung {
 	margin: 10px 20px;
 	width:800px; 
@@ -41,9 +34,24 @@ h3 {
 	padding: 10px 10px;
 } 
 
+#leger{
+	background: #e0e0eb;
+	border: 1px solid #32324e;
+	padding: 15x;
+	margin: 10px;
+	}
+	
 li {
-	margin: 10px 20px;
+	padding: 10px;	
 }
+
+p {
+  background: #e0e0eb;
+  border: 1px solid #32324e;
+  padding: 10px;
+  margin: 10px;
+}
+
 
 #almen {
 	width:800px; 
@@ -56,6 +64,7 @@ li {
 #pulldown {
  margin-top:20px;
  padding: 10px 10px;
+ 
  }
  
 #legende {
@@ -63,8 +72,21 @@ li {
 	border: 1px black solid;
 	padding: 5px 10px 5px 5px;
 	text-align:left;
+	position: relative;
 }
 
+#kartenquellen {
+	color: #0033cc;
+	margin: 15px
+	}
+	
+body {
+font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;       
+background-color: rgba(221, 221, 221, 0.75);
+padding: 0;
+margin: 0;
+}	
+	
 html, body, #almen {
     height: 100%;
 }

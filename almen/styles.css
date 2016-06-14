@@ -54,10 +54,10 @@ p {
 
 
 #almen {
-	width:800px; 
-	height:500px;
+	max-width:800px; 
+	max-height:500px;
 	border: 1px black solid;
-	margin: 10px 20px;
+	
 	padding: 10px 10px;
 }
 
@@ -72,7 +72,7 @@ p {
 	border: 1px black solid;
 	padding: 5px 10px 5px 5px;
 	text-align:left;
-	position: relative;
+	margin: 10px 10px 10px 10px;
 }
 
 #kartenquellen {

@@ -1,5 +1,5 @@
 window.onload = function() {
-
+	
     // Basis layer hinzufügen
     var layers = {
         osmlayer: L.tileLayer('http://{s}.tile.osm.org/{z}/{x}/{y}.png', {
@@ -73,7 +73,7 @@ window.onload = function() {
 
     // Marker clustern
     var mc = new L.markerClusterGroup({
-        disableClusteringATZoom: 8
+        disableClusteringATZoom: 14
     });
 
     // Marker mit Pop ups über GeoJSON zur Marker Cluster Gruppe hinzufügen

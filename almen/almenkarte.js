@@ -1,5 +1,5 @@
 window.onload = function() {
-	
+
     // Basis layer hinzufügen
     var layers = {
         osmlayer: L.tileLayer('http://{s}.tile.osm.org/{z}/{x}/{y}.png', {
